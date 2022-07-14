@@ -6,15 +6,12 @@ import RightArrowIcon from '../assets/icons/right-arrow.png';
 import Scroll from './Scroll';
 
 const HorizontalScrollBar = ({ data, bodyPart, setBodyPart}) => {
-  const slideRight = () => {
-
-  }
 
   return (
     <div style={{position: 'relative'}}>
     <div className='categories-container'>
         {data.map(item => (
-           <div key={item} itemId={item}>
+           <div key={item} itemId={item} allBodyPartCards='bodypart-card'>
                 <BodyPart item={item} bodyPart={bodyPart} setBodyPart={setBodyPart} />
             </div>
         ))}

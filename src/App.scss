@@ -76,13 +76,10 @@ body {
     transition: 0.3s all ease-in-out;
   }
   
-  .exercise-card img {
-    /* height: 326px; */
-  }
-  
   .bodyPart-card {
     transform: scale(1, 1);
     transition: 0.3s all ease-in-out;
+    z-index: 2;
 
   }
   
@@ -184,8 +181,9 @@ body {
   .categories-container{
     display: flex;
     overflow-x: auto;
-    width: 100vw;
+    width: 1080px;
     overflow-y: hidden;
+    scroll-behavior: smooth;
   }
 
   .categories-container::-webkit-scrollbar{
@@ -194,7 +192,6 @@ body {
 
   .carousel-arrows{
     font-size: 32px;
-    border: solid 2px red;
     color: red;
     width: 40px;
     text-align: center;
@@ -204,11 +201,22 @@ body {
     margin-left: 10px;
     margin-bottom: 10px;
     &:hover{
-      background-color: #000;
-      color: white;
+      color: #000;
       border: none;
       cursor: pointer;
     }
+  }
+
+  .arrowLT{
+    position: absolute;
+    top: 70px;
+    left: -70px;
+  }
+
+  .arrowGT{
+    position: absolute;
+    top: 70px;
+    right: -70px;
   }
 
   

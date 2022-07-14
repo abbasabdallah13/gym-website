@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ExerciseCard = ({el, index}) => {
   return (    
-        <Link className='exerciseCardByAbbas' key={index} to={`/abbass/${el.id}`} >
+        <Link className='exerciseCardByAbbas' key={index} to={`/exercise/${el.id}`} >
         <img src={el.gifUrl} alt={el.name} loading='lazy'/>
         <Stack direction='row' divider={<Divider orientation="vertical" flexItem />} spacing={2} sx={{marginBottom: '20px', justifyContent:'center'}}>
         <button 

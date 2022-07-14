@@ -1,29 +1,30 @@
 import React from 'react'
 
 const Scroll = ({data}) => {
-    const elems = document.querySelectorAll('[key=""]');
+    console.log(data);
+    const elems = [...document.querySelectorAll('[allBodyPartCards=bodypart-card]')];
     console.log(elems);
-
+   
     const slideRight = () => {
-        elems.map(item =>{
-        console.log(data);
-        const itemDetails = item.getBoundingClientRect();
-        item.scrollLeft += itemDetails.width;
-    })
+        const cardWidth = elems[0].getBoundingClientRect().width;
+        const container = document.getElementsByClassName('categories-container');
+        container[0].scrollLeft += cardWidth*4;
     };
 
     const slideLeft = () => {
-        elems.map(item =>{
-            const itemDetails = item.getBoundingClientRect();
-            item.scrollRight -= itemDetails.width;
-        })
-        };
+        const cardWidth = elems[0].getBoundingClientRect().width;
+        const container = document.getElementsByClassName('categories-container');
+        container[0].scrollLeft -= cardWidth*4;
 
+        };
+        document.addEventListener('mousemove', (e)=>{
+            console.log(`x: ${e.pageX} and y: ${e.pageY}`);
+        })
 
   return (
-<div style={{display: 'flex'}}>
-    <span onClick={slideRight} className='carousel-arrows'>&lt;</span>
-    <span onClick={slideLeft} className='carousel-arrows'>&gt;</span>
+<div >
+    <span onClick={slideLeft} className='carousel-arrows arrowLT'>&lt;</span>
+    <span onClick={slideRight} className='carousel-arrows arrowGT '>&gt;</span>
     </div>  )
 }
 
