@@ -37,6 +37,18 @@ import HorizontalScrollBar from './HorizontalScrollBar';
       setShowHeaderTitle('Showing Results:');
     }
   } 
+  const obj ={
+    data:bodyParts,
+    bodyPart:bodyPart,
+    setBodyPart:setBodyPart,
+    bool:true,
+    styles:{width: '1080px'}, 
+    cardWidth:270,
+    cardsPerContainer: 4,
+    leftArrow:{top: '70px', left: '-70px'},
+    rightArrow: {top: '70px', right: '-70px'},
+    gap: 0
+  }
   return (
    <Stack alignItems={'center'} justifyContent={'center'}>
     <Typography fontWeight={'700'} sx={{fontSize:{lg: '40px', xs:'20px'}}}>
@@ -47,7 +59,7 @@ import HorizontalScrollBar from './HorizontalScrollBar';
     <Button variant={'contained'} color={'error'} sx={{height:'55px'}} onClick={handleSearch}>Search</Button>
     </Stack>
     <Box>
-      <HorizontalScrollBar data={bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart}/>
+      <HorizontalScrollBar {...obj} />
     </Box>
    </Stack> 
   )

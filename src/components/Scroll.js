@@ -1,30 +1,41 @@
-import React from 'react'
+import React, { useEffect} from 'react'
 
-const Scroll = ({data}) => {
-    console.log(data);
-    const elems = [...document.querySelectorAll('[allBodyPartCards=bodypart-card]')];
-    console.log(elems);
-   
+const Scroll = ({cardWidth,cardsPerContainer,gap, leftArrow, rightArrow}) => {
+    const scrollByContainerWidth = cardWidth * cardsPerContainer + gap;
+    let clicks = 0;
+    
+    
     const slideRight = () => {
-        const cardWidth = elems[0].getBoundingClientRect().width;
-        const container = document.getElementsByClassName('categories-container');
-        container[0].scrollLeft += cardWidth*4;
+        const container = document.querySelector('.slider-container');
+
+        if(container.scrollLeft % scrollByContainerWidth !== 0){
+            container.scrollLeft = clicks*scrollByContainerWidth;
+        }else{
+        container.scrollLeft += scrollByContainerWidth;
+        clicks += 1;
+        console.log(clicks);
+        console.log(container.scrollLeft);
+        }
+        
     };
 
     const slideLeft = () => {
-        const cardWidth = elems[0].getBoundingClientRect().width;
-        const container = document.getElementsByClassName('categories-container');
-        container[0].scrollLeft -= cardWidth*4;
+        const container = document.querySelector('.slider-container');
+        if(clicks !== 0){
+            clicks-=1;
+            }
+        if(container.scrollLeft % scrollByContainerWidth !== 0){
+            container.scrollLeft = clicks*scrollByContainerWidth;
+        }else{
+        container.scrollLeft -= scrollByContainerWidth;
+        }    
+    };
 
-        };
-        document.addEventListener('mousemove', (e)=>{
-            console.log(`x: ${e.pageX} and y: ${e.pageY}`);
-        })
 
   return (
-<div >
-    <span onClick={slideLeft} className='carousel-arrows arrowLT'>&lt;</span>
-    <span onClick={slideRight} className='carousel-arrows arrowGT '>&gt;</span>
+<div>
+    <span onClick={() => slideLeft()} className='carousel-arrows arrowLT' style={leftArrow}>&lt;</span>
+    <span onClick={() => slideRight()} className='carousel-arrows arrowGT' style={rightArrow}>&gt;</span>
     </div>  )
 }
 

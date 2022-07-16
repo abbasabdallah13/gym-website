@@ -37,7 +37,7 @@ const Exercises = ({ searchedExercises, setSearchedExercises, bodyPart, setShowH
 
   return (
     <div>
-    <Typography variant='h3' mb='25px' >{showHeaderTitle}</Typography>
+    <Typography id='exercises' variant='h3' mb='25px' >{showHeaderTitle}</Typography>
     <div className='gridContainerByAbbas'>
      {
       currentExercises.map((el, index) => {
