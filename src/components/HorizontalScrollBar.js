@@ -1,13 +1,11 @@
-import React, { useContext, useRef, useEffect } from 'react'
-import { Box, Typography } from '@mui/material';
+import React from 'react'
 import BodyPart from './BodyPart';
 import ExerciseCard from './ExerciseCard';
-import LeftArrowIcon from '../assets/icons/left-arrow.png';
-import RightArrowIcon from '../assets/icons/right-arrow.png';
 import Scroll from './Scroll';
+import Loader from './Loader';
 
 const HorizontalScrollBar = ({ data, bodyPart, setBodyPart, bool, styles, cardWidth, cardsPerContainer, gap, leftArrow, rightArrow}) => {
-
+if(!data) return <Loader />;
 
   return (
     <div style={{position: 'relative', display: 'inline-block'}}>

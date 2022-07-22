@@ -3,6 +3,8 @@ import { exerciseOptions, fetchData } from '../utils/fetchData'
 import { Grid, Pagination, Typography } from '@mui/material'
 import { textTransform } from '@mui/system';
 import ExerciseCard from './ExerciseCard';
+import Loader from './Loader';
+import Magnifier from '../assets/images/magnifier.png'
 
 const Exercises = ({ searchedExercises, setSearchedExercises, bodyPart, setShowHeaderTitle, showHeaderTitle}) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -10,12 +12,15 @@ const Exercises = ({ searchedExercises, setSearchedExercises, bodyPart, setShowH
 
   const indexOfLastExercise = currentPage * exercisesPerPage - 1;
   const indexofFirstExercise = indexOfLastExercise + 1 - exercisesPerPage;
+ 
+  
   const currentExercises = searchedExercises.slice(indexofFirstExercise, indexOfLastExercise+1); 
+  console.log(currentExercises);
 
   const paginate =(e, value) =>{
     setCurrentPage(value);
 
-    window.scrollTo({top:1265, behavior: 'smooth'});
+    window.scrollTo({top:1200, behavior: 'smooth'});
   }
 
 
@@ -37,14 +42,23 @@ const Exercises = ({ searchedExercises, setSearchedExercises, bodyPart, setShowH
 
   return (
     <div>
+     {currentExercises.length?
+     <div style={{padding: '20px'}}>
     <Typography id='exercises' variant='h3' mb='25px' >{showHeaderTitle}</Typography>
     <div className='gridContainerByAbbas'>
-     {
-      currentExercises.map((el, index) => {
+     {currentExercises.map((el, index) => {
      return <ExerciseCard el={el} index = {index} />
-    })
-     }
+    })}
     </div>
+    </div>
+    :<div className='notfound'>
+      <img src={Magnifier} alt='not found' />
+      <h1>NO RESULTS FOUND</h1>
+    <p>Try something else or check one of our categories</p>
+    </div>
+     }
+
+    
     <div className='pagination'>
     {
       searchedExercises.length > 9 && (
@@ -59,7 +73,7 @@ const Exercises = ({ searchedExercises, setSearchedExercises, bodyPart, setShowH
       )
     }
     </div>
-    </div>
+  </div>
   )
 }
 

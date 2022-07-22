@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React from 'react'
 
 const Scroll = ({cardWidth,cardsPerContainer,gap, leftArrow, rightArrow}) => {
     const scrollByContainerWidth = cardWidth * cardsPerContainer + gap;

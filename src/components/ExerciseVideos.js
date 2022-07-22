@@ -1,10 +1,11 @@
 import React from 'react'
+import Loader from './Loader';
 
 const ExerciseVideos = ({videos, exerciseDetails}) => {
-  console.log(videos);
+  if(!videos || !exerciseDetails) return <Loader />;
   return (
-    <div>
-      <h1 style={{marginBottom: '30px', textDecoration: 'underline 7px red',textUnderlineOffset: '10px', marginLeft: '20px'}}>Check the human version of the exercise on YouTube! </h1>
+    <div style={{marginTop: '120px'}}>
+      <h1 style={{marginBottom: '50px', textDecoration: 'underline 7px red',textUnderlineOffset: '10px', marginLeft: '20px'}}>Check the human version of the exercise on YouTube! </h1>
       <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gridRowGap: '20px'}}>
       {videos.map((el,index) => { 
         return <div className='youtube-video-card' style={{display: 'flex', alignItems: 'center', marginLeft: '20px'}} >
