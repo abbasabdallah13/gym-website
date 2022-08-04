@@ -1,19 +1,31 @@
-import { Typography, Stack } from '@mui/material'
 import React from 'react'
 import Icon from '../assets/icons/gym.png'
 
-const BodyPart = ({ item, bodyPart, setBodyPart}) => {
+const BodyPart = ({ showHeaderTitle, setShowHeaderTitle, item, bodyPart, setBodyPart, data}) => {
+  const clickedCategory = () => {
+    data.map(el => {
+      document.getElementById(el).style.borderTop = 'unset';
+    })
+    document.getElementById(item).style.borderTop = '3px solid red';
+  }
+
   return (
-    <Stack className = 'bodyPart-card'
-     type="button" alignItems='center' justifyContent='center'  
-     sx={{borderTop: bodyPart === item ? '4px solid #ff2625': '', backgroundColor: '#fff', borderBottomLeftRadius: '20px',
-    width: '270px', height:'180px', cursor: 'pointer', gap: '47px'}}
+    <div className = 'bodyPart-card' id={item}
     onClick={() => {
       setBodyPart(item);
-      window.scrollTo({top: 1200, behavior:'smooth'});}}>
-      <img className = 'bodyPart-card' src={Icon} style={{width:'40px', height: '40px'}} />
-      <Typography sx={{textTransform: 'capitalize', fontWeight: '500', fontSize: '18px', fontFamily: ''}}>{item}</Typography>
-    </Stack>
+      clickedCategory();
+      // console.log(setShowHeaderTitle);
+      // setShowHeaderTitle('Showing Results:');
+      if(window.screen.width <=600){
+        let navbarHeight = document.getElementsByClassName('navbar')[0].getBoundingClientRect().height;
+        window.scrollTo({top: document.querySelector('#exercises').getBoundingClientRect().y+document.documentElement.scrollTop-navbarHeight, behavior:'smooth'});
+      }else{
+      window.scrollTo({top: document.querySelector('#exercises').getBoundingClientRect().y+document.documentElement.scrollTop, behavior:'smooth'});
+      }}}
+      >
+      <img src={Icon} />
+      <p>{item}</p>
+    </div>                                                                                              
   )
 }
 

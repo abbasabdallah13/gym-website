@@ -1,27 +1,37 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import BodyPart from './BodyPart';
 import ExerciseCard from './ExerciseCard';
 import Scroll from './Scroll';
 import Loader from './Loader';
 
-const HorizontalScrollBar = ({ data, bodyPart, setBodyPart, bool, styles, cardWidth, cardsPerContainer, gap, leftArrow, rightArrow}) => {
-if(!data) return <Loader />;
+const HorizontalScrollBar = ({ data, bodyPart, setBodyPart, bool, cardWidth, gap, setShowHeaderTitle, showHeaderTitle, extraStyles}) => {
+  const [detailsSliderWidth, setDetailsSliderWidth] = useState(0);
+  useEffect(() => {
+    if(window.screen.width <= 600){
+      setDetailsSliderWidth()
+    }
+  
+    
+  }, [])
+  
+
+  if(!data) return <Loader />;
 
   return (
-    <div style={{position: 'relative', display: 'inline-block'}}>
-    <div style={styles} className='slider-container'>
+    <div style={{position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center',flexDirection: 'column'}}>
+    <div className='slider-container'>
         {bool?data.map(item => (
-           <div key={item} itemId={item} allBodyPartCards='bodypart-card'>
-                <BodyPart item={item} bodyPart={bodyPart} setBodyPart={setBodyPart} />
+           <div key={item} >
+                <BodyPart showHeaderTitle={showHeaderTitle} setShowHeaderTitle={setShowHeaderTitle} item={item} bodyPart={bodyPart} setBodyPart={setBodyPart} data={data} />
             </div>
         )):data.map((item,index) => (
-          <div style={{marginRight: '30px'}} key={item} itemId={item}>
-               <ExerciseCard key={item.name+''+ index} el={item} index={index} />
+          <div style={{}} key={item}>
+               <ExerciseCard key={item.name+''+ index} el={item} index={index} extraStyles={extraStyles} />
            </div>
        ))
         }
     </div>
-    <Scroll cardWidth={cardWidth} cardsPerContainer={cardsPerContainer} gap={gap} leftArrow={leftArrow} rightArrow={rightArrow} />
+    <Scroll cardWidth={cardWidth}  gap={gap} />
     </div>
     
     

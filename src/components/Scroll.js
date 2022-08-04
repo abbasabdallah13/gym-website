@@ -1,21 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-const Scroll = ({cardWidth,cardsPerContainer,gap, leftArrow, rightArrow}) => {
-    const scrollByContainerWidth = cardWidth * cardsPerContainer + gap;
+const Scroll = ({cardWidth,gap}) => {
+    const [rem, setRem] = useState(0);
+    const [cardsPerContainer, setCardsPerContainer] = useState(0);
+    useEffect(() => {
+        if(rem === 0){
+            setRem(window.getComputedStyle(document.body).fontSize.toString().replace('px',''));
+        };
+        if(window.screen.width > 950){
+            setCardsPerContainer(4);
+        }else if(window.screen.width<=950 && window.screen.width>=600){
+            setCardsPerContainer(3);
+        }else if(window.screen.width < 600){
+            setCardsPerContainer(2);
+        }
+        window.addEventListener('resize', (e)=>{
+             setRem(window.getComputedStyle(document.body).fontSize.toString().replace('px',''));
+            if(window.screen.width > 950){
+                setCardsPerContainer(4);
+            }else if(window.screen.width<=950 && window.screen.width>=600){
+                setCardsPerContainer(3);
+            }else if(window.screen.width < 600){
+                setCardsPerContainer(2);
+            }
+        }) 
+    }, [])
+     
+    const scrollByContainerWidth = cardWidth  * rem * cardsPerContainer + gap;
     let clicks = 0;
+
+    
     
     
     const slideRight = () => {
         const container = document.querySelector('.slider-container');
 
-        if(container.scrollLeft % scrollByContainerWidth !== 0){
-            container.scrollLeft = clicks*scrollByContainerWidth;
-        }else{
+         
         container.scrollLeft += scrollByContainerWidth;
-        clicks += 1;
-        console.log(clicks);
-        console.log(container.scrollLeft);
-        }
+        clicks += 1;        
         
     };
 
@@ -24,18 +46,16 @@ const Scroll = ({cardWidth,cardsPerContainer,gap, leftArrow, rightArrow}) => {
         if(clicks !== 0){
             clicks-=1;
             }
-        if(container.scrollLeft % scrollByContainerWidth !== 0){
-            container.scrollLeft = clicks*scrollByContainerWidth;
-        }else{
+       
         container.scrollLeft -= scrollByContainerWidth;
-        }    
+            
     };
 
 
   return (
-<div>
-    <span onClick={() => slideLeft()} className='carousel-arrows arrowLT' style={leftArrow}>&lt;</span>
-    <span onClick={() => slideRight()} className='carousel-arrows arrowGT' style={rightArrow}>&gt;</span>
+<div className='arrows-container'>
+    <span onClick={() => slideLeft()} className='carousel-arrows'>&lt;</span>
+    <span onClick={() => slideRight()} className='carousel-arrows'>&gt;</span>
     </div>  )
 }
 

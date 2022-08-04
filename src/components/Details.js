@@ -21,22 +21,25 @@ const Details = ({element}) => {
     }
   ]
   return (
-    <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
-      <div>
-        <img src={element.gifUrl} alt='exercise gif' style={{width: '600px', height:'600px'}} />
+    <div className='details-container'>
+      <div className='details-img'>
+        <img  src={element.gifUrl} alt='exercise gif' />
       </div>
-      <div style={{display:'flex', flexDirection: 'column', justifyContent: 'space-around', height: '500px', padding: '20px'}}>
-        <h1 style={{textTransform: 'capitalize'}} >{element.name}</h1>
-        <p style={{fontSize: '20px', color: '#847f80'}}>Exercises keep you strong.&nbsp; 
-        <span style={{textTransform: 'capitalize'}}>{element.name}</span> is one of the best exercises to target your {element.target}.&nbsp;It will help you improve your mood and gain energy.
+      <div className='details-info'>
+        <h1>{element.name}</h1>
+        <p>Exercises keep you strong.&nbsp; 
+        <span>{element.name}</span> is one of the best exercises to target your {element.target}.&nbsp;It will help you improve your mood and gain energy.
         Remember to never give up because dedication is the number one key to witness effects.</p>
-        {iconsDetails.map(el => (
-          <div style={{display: 'flex', alignItems: 'center'}}>
+        <div className='mobileWrapper'>
+        <div className='details-btns-container' >{iconsDetails.map(el => (
+          
+          <div className='details-btns'>
             <img src={el.icon} className='exercise-detail-buttons'/>
-            <h2 style={{textTransform: 'capitalize', marginLeft: '30px', fontSize: '20px', fontWeight: '400'}}>{el.name}</h2>
+            <h2>{el.name}</h2>
           </div>
         ))
-        }
+        }</div>
+        </div>
       </div>
     </div>
   )

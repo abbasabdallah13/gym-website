@@ -8,19 +8,18 @@ const SimilarExercises = ({exercisesByTarget}) => {
   const obj = {
     data:exercisesByTarget, 
     bool:false, 
-    styles:{width: '1110px',
-    height: '550px'
-  }, 
-    cardWidth:350, 
+    cardWidth:13, 
     cardsPerContainer:3, 
-    gap:90,
-    leftArrow:{top: '200px', left: '-70px'},
-    rightArrow:{top: '200px', right: '-70px'}
+    gap:0,
+    extraStyles: {
+      'borderTop': 'unset',
+      'borderRight': '2px solid #d9d9d9',
+    }
     }
   return (
-    <div style={{marginTop: '120px'}}>
-    <h1 style={{marginBottom: '50px', marginTop:'20px', marginLeft: '20px'}}>Check exercises with the same target muscle: </h1>
-    <div style={{display:'flex', flexDirection: 'column', alignItems: 'center' ,justifyContent: 'center'}}>
+    <div style={{marginTop: '1rem', padding: '1rem'}}>
+    <h1 style={{marginBottom: '2rem', fontSize: '1.5rem', textDecoration: 'underline 0.3rem red'}}>Check exercises with the same target muscle: </h1>
+    <div >
       <HorizontalScrollBar {...obj} />
     </div>
     </div>
